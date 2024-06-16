@@ -1,12 +1,12 @@
 from airflow import DAG
-from datetime import datetime
+import pendulum
 from airflow.operators.python import PythonOperator
 from airflow.decorators import task
 
 with DAG(
     dag_id="dags_python_with_branch_decorator",
     schedule='0 1 * * *',
-    start_date=datetime(2024,6,1),
+    start_date=pendulum.datetime(2024,6,1, tz='Asia/Seoul'),
     catchup=False,
 ) as dag:
     
