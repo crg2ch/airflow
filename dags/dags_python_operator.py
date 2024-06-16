@@ -1,5 +1,4 @@
 from airflow import DAG
-import datetime
 import pendulum
 import random
 from airflow.operators.python import PythonOperator
