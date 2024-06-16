@@ -8,7 +8,6 @@ with DAG(
     schedule="10 0 * * 6#1",
     start_date=pendulum.datetime(2024, 6, 1, tz="Asia/Seoul"),
     catchup=False,
-    dagrun_timeout=datetime.timedelta(minutes=60),
 ) as dag:
     # [START howto_operator_bash]
     t1_orange = BashOperator(

@@ -8,7 +8,6 @@ with DAG(
     schedule="0 0 * * *",
     start_date=pendulum.datetime(2024, 6, 1, tz="Asia/Seoul"),
     catchup=False,
-    dagrun_timeout=datetime.timedelta(minutes=60),
 ) as dag:
     t1 = EmptyOperator(
         task_id="t1"
