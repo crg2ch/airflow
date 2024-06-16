@@ -35,10 +35,10 @@ with DAG(
         op_kwargs={'selected':'B'}
     )
 
-    task_C = PythonOperator(
+    task_c = PythonOperator(
         task_id='task_C',
         python_callable=common_func,
         op_kwargs={'selected':'C'}
     )
     
-    select_random() >> [task_a, task_b, task_C]
+    select_random() >> [task_a, task_b, task_c]

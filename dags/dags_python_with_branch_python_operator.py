@@ -39,10 +39,10 @@ with DAG(
         op_kwargs={'selected':'B'}
     )
 
-    task_C = PythonOperator(
+    task_c = PythonOperator(
         task_id='task_C',
         python_callable=common_func,
         op_kwargs={'selected':'C'}
     )
     
-    python_branch_task >> [task_a, task_b, task_C]
+    python_branch_task >> [task_a, task_b, task_c]
