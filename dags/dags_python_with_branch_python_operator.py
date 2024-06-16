@@ -1,13 +1,12 @@
 from airflow import DAG
-import pendulum
-import random
-from airflow.operators.python import PythonOperator, BranchPythonOperator
-from common.common_func import get_sftp
+import datetime
+from airflow.operators.python import PythonOperator
+from airflow.operators.python import BranchPythonOperator
 
 with DAG(
-    dag_id="dags_branch_python_operator",
+    dag_id="dags_python_with_branch_python_operator",
     schedule="None",
-    start_date=pendulum.datetime(2024, 6, 1, tz="Asia/Seoul"),
+    start_date=datetime(2024,6,1),
     catchup=False,
 ) as dag:
     
