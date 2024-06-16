@@ -22,8 +22,8 @@ with DAG(
         reset_dag_run=True,
         wait_for_completion=False,
         poke_interval=60,
-        allowed_status=['success'],
-        failed_status=None,
+        allowed_states=['success'],
+        failed_states=None,
     )
 
     start_task >> trigger_dag_task
