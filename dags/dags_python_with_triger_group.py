@@ -26,7 +26,7 @@ with DAG(
         
         inner_function2 = PythonOperator(
             task_id="inner_function2",
-            python_callable='inner_func',
+            python_callable=inner_func,
             op_kwargs={'msg':'첫 번째 TaskGroup내 두 번째 task입니다.'}
         )
 
@@ -40,7 +40,7 @@ with DAG(
         
         inner_function2 = PythonOperator(
             task_id="inner_function2",
-            python_callable='inner_func',
+            python_callable=inner_func,
             op_kwargs={'msg':'두 번째 TaskGroup내 두 번째 task입니다.'}
         )
 
