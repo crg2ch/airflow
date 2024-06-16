@@ -1,19 +1,49 @@
 from airflow import DAG
-import datetime
 import pendulum
-from airflow.operators.python import PythonOperator
+import random
+from airflow.operators.python import PythonOperator, BranchPythonOperator
 from common.common_func import get_sftp
 
 with DAG(
-    dag_id="dags_python_import_func",
-    schedule="30 6 * * *",
+    dag_id="dags_branch_python_operator",
+    schedule="None",
     start_date=pendulum.datetime(2024, 6, 1, tz="Asia/Seoul"),
     catchup=False,
 ) as dag:
     
-    task_get_sftp = PythonOperator(
-        task_id = 'task_get_sftp',
-        python_callable=get_sftp
+    def select_random():
+        import random
+        item_lst = ['A', 'B', 'C']
+        selected_item = random.choice(item_lst)
+        if selected_item == 'A':
+            return 'task_a'
+        elif selected_item in ['B', 'C']:
+            return ['task_b', 'task_c']
+        
+    python_branch_task = BranchPythonOperator(
+        task_id='python_branch_task',
+        python_callable=select_random
     )
 
-    task_get_sftp
+    def common_func(**kwargs):
+        print(kwargs['selected'])
+    
+    task_a = PythonOperator(
+        task_id='task_a',
+        python_callable=common_func,
+        op_kwargs={'selected':'A'}
+    )
+
+    task_b = PythonOperator(
+        task_id='task_b',
+        python_callable=common_func,
+        op_kwargs={'selected':'B'}
+    )
+
+    task_C = PythonOperator(
+        task_id='task_C',
+        python_callable=common_func,
+        op_kwargs={'selected':'C'}
+    )
+    
+    python_branch_task >> [task_a, task_b, task_C]

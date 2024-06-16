@@ -1,5 +1,4 @@
 from airflow import DAG
-import datetime
 import pendulum
 from airflow.operators.python import PythonOperator
 from common.common_func import get_sftp

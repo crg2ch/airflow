@@ -1,6 +1,5 @@
 from airflow import DAG
 import pendulum
-import random
 from airflow.decorators import task
 
 with DAG(
