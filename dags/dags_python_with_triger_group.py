@@ -1,5 +1,5 @@
 from airflow import DAG
-from airflow.operators.bash import PythonOperator
+from airflow.operators.python import PythonOperator
 from airflow.decorators import task
 from airflow.decorators import task_group
 from airflow.utils.task_group import TaskGroup
